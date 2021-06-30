@@ -1,0 +1,124 @@
+{
+  "version": 6,
+  "entities": [
+    {
+      "entity": {
+        "type": "Project",
+        "id": "27da9382-80ff-4821-be5e-5a9a61c43677",
+        "name": "LoRaDKForwarder"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Service",
+            "id": "bb77d309-d7f8-4eab-914b-c5b94addb34e",
+            "name": "Device"
+          },
+          "children": [
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+                  "name": "POST"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n  \"DeviceSerialNumber\": 47150973,\n  \"DeviceEUI\": \"423456FFFE123464\"\n}"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "secure": true,
+                    "name": "https",
+                    "version": "V11"
+                  },
+                  "host": "${LoRaDKForwarderAPI}",
+                  "path": "/Device"
+                },
+                "id": "02e5e999-88ef-49f1-9e45-d0034c33273b",
+                "name": "Register",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "enabled": true,
+                    "name": "x-functions-key",
+                    "value": "${DeviceKey}"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "entity": {
+            "type": "Service",
+            "id": "293f7533-68f6-478f-98cf-5fa5f307a560",
+            "name": "IntegrationPartner"
+          },
+          "children": [
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+                  "name": "POST"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n    \"channel\":3,\n    \"datarate\":3,\n    \"devEui\":\"4883C7DF30022A64\",\n    \"freq\":902.9,\n    \"gwEui\":\"070027F8\",\n    \"joinId\":0,\n    \"pdu\":\"676700e4686852\",\n    \"port\":2,\n    \"rssi\":-27,\n    \"seqno\":245,\n    \"snr\":9.25,\n    \"txtime\":\"2021-01-06T18:54:04.494Z\"\n}\n"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "secure": true,
+                    "name": "https",
+                    "version": "V11"
+                  },
+                  "host": "${LoRaDKForwarderAPI}",
+                  "path": "/MachineQSimple"
+                },
+                "id": "5587f73d-c255-41aa-934f-1a93c2a97dc4",
+                "name": "MachineQSimple",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "enabled": true,
+                    "name": "x-functions-key",
+                    "value": "${MachineQSimpleKey}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
